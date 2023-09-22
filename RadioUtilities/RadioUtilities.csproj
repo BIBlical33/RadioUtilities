@@ -13,13 +13,6 @@
     <Reference Include="Exiled.Events">
       <HintPath>..\..\..\..\..\..\Exiled Bağımlıları\Plugins\Exiled.Events.dll</HintPath>
     </Reference>
-    <Reference Include="Exiled.Loader">
-      <HintPath>..\..\..\..\..\..\Exiled Bağımlıları\global\Exiled.Loader.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="EXILED" Version="8.2.1" />
   </ItemGroup>
 
 </Project>

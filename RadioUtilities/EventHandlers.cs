@@ -9,26 +9,27 @@ namespace RadioUtilities
 {
     internal class EventHandlers
     {
+        Config config = new Config();
         public void OnUsingRadioBattery(UsingRadioBatteryEventArgs ev)
         {
-            ev.IsAllowed = false;
+            if (config.IsInfinityBatteryEnabled)
+            {
+                ev.IsAllowed = false;
+            }
         }
 
-        // Should work! I'm unable to test it now :/
         public void OnTransmitting(TransmittingEventArgs ev)
         {
-            if (MainPlugin.Instance.Config.IsUnknownTransmittingEnabled)
+            if (config.IsUnknownTransmittingEnabled)
             {
-                
-            }
-            
-            if (ev.Player.IsTransmitting)
-            {
-                ev.Player.CustomName = "Mhz.110";
-            }
-            else
-            {
-                ev.Player.CustomName = null;
+                if (ev.Player.IsTransmitting)
+                {
+                    ev.Player.CustomName = config.RadioCustomName;
+                }
+                else
+                {
+                    ev.Player.CustomName = null;
+                }
             }
         }
     }
