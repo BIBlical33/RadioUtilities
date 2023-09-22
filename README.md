@@ -6,6 +6,7 @@
 # Features
 
 -Infinite Radio Battery
+- Unknown radio
 
 
 # Future plans
