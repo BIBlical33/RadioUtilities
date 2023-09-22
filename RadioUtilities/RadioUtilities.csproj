@@ -18,4 +18,8 @@
     </Reference>
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="EXILED" Version="8.2.1" />
+  </ItemGroup>
+
 </Project>
