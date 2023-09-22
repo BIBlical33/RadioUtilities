@@ -17,4 +17,5 @@
 ``
 RadioUtilities:
   is_enabled: true
-  debug: false``
+  debug: false
+``
