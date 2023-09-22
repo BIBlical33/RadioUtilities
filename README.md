@@ -1,3 +1,4 @@
+EXİLED 8.2.1
 The original owner of the plugin is BuildBoy12-SL
 
 Features
