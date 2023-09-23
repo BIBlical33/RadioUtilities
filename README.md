@@ -20,11 +20,15 @@ RadioUtilities:
   
   ``is_enabled: true``
   
+  
   ``debug: false``
+  
   
   ``IsInfinityBatteryEnabled: true``
   
+  
   ``IsUnknownTransmittingEnabled: true``
+  
   
   ``RadioCustomName: Mhz.110``
   
