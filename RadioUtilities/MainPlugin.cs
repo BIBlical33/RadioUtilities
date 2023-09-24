@@ -1,5 +1,6 @@
 ﻿using Exiled.API.Features;
 using Exiled.API.Interfaces;
+using System;
 using System.ComponentModel;
 using Player = Exiled.Events.Handlers.Player;
 
@@ -15,13 +16,12 @@ namespace RadioUtilities
 
         public static MainPlugin Instance;
 
-        private EventHandlers _handlers;
-
+        private EventHandlers _handlers { get; set; }
         public override void OnEnabled()
         {
             Instance = this;
+            _handlers = new EventHandlers(Config);
 
-            _handlers = new EventHandlers();
 
 
             Player.UsingRadioBattery += _handlers.OnUsingRadioBattery;
@@ -41,16 +41,5 @@ namespace RadioUtilities
         }
 
     }
-    public class Config : IConfig
-    {
-        public bool IsEnabled { get; set; } = true;
 
-        public bool Debug { get; set; } = false;
-
-        public bool IsInfinityBatteryEnabled { get; set; } = true;
-
-        public bool IsUnknownTransmittingEnabled { get; set; } = true;
-
-        public string RadioCustomName { get; set; } = "Mhz.110";
-    }
 }

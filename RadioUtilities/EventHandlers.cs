@@ -7,12 +7,15 @@ using System.Threading.Tasks;
 
 namespace RadioUtilities
 {
-    internal class EventHandlers
+    public class EventHandlers
     {
-        Config config = new Config();
+        private readonly Config _config;
+        public EventHandlers(Config config) => _config = config;
+        
+
         public void OnUsingRadioBattery(UsingRadioBatteryEventArgs ev)
         {
-            if (config.IsInfinityBatteryEnabled)
+            if (_config.IsInfinityBatteryEnabled)
             {
                 ev.IsAllowed = false;
             }
@@ -20,11 +23,11 @@ namespace RadioUtilities
 
         public void OnTransmitting(TransmittingEventArgs ev)
         {
-            if (config.IsUnknownTransmittingEnabled)
+            if (_config.IsUnknownTransmittingEnabled)
             {
                 if (ev.Player.IsTransmitting)
                 {
-                    ev.Player.CustomName = config.RadioCustomName;
+                    ev.Player.CustomName = _config.RadioCustomName;
                 }
                 else
                 {
