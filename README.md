@@ -13,6 +13,10 @@
 
 -Nothing really for now
 
+# Known issues
+
+-Causing some bugs with RPNames plugin if Unknown Transmitting is Enabled
+
 # Config
 
 
