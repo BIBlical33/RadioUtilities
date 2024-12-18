@@ -1,17 +1,16 @@
 ﻿using Exiled.Events.EventArgs.Player;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RadioUtilities
 {
     public class EventHandlers
     {
         private readonly Config _config;
+
+        // Хранение оригинальных имен игроков
+        private readonly Dictionary<string, string> originalNames = new();
+
         public EventHandlers(Config config) => _config = config;
-        
 
         public void OnUsingRadioBattery(UsingRadioBatteryEventArgs ev)
         {
@@ -27,11 +26,23 @@ namespace RadioUtilities
             {
                 if (ev.Player.IsTransmitting)
                 {
+                    // Сохраняем оригинальное имя игрока, если оно еще не сохранено
+                    if (!originalNames.ContainsKey(ev.Player.UserId))
+                    {
+                        originalNames[ev.Player.UserId] = ev.Player.Nickname;
+                    }
+
+                    // Устанавливаем кастомное имя
                     ev.Player.CustomName = _config.RadioCustomName;
                 }
                 else
                 {
-                    ev.Player.CustomName = null;
+                    // Восстанавливаем оригинальное имя, если оно было сохранено
+                    if (originalNames.TryGetValue(ev.Player.UserId, out string originalName))
+                    {
+                        ev.Player.CustomName = originalName; // Восстанавливаем оригинальное имя
+                        originalNames.Remove(ev.Player.UserId); // Удаляем из словаря
+                    }
                 }
             }
         }
