@@ -7,8 +7,7 @@ namespace RadioUtilities
     {
         private readonly Config _config;
 
-        // Хранение оригинальных имен игроков
-        private readonly Dictionary<string, string> originalNames = new();
+        private readonly Dictionary<int, string> originalNames = new();
 
         public EventHandlers(Config config) => _config = config;
 
@@ -26,22 +25,19 @@ namespace RadioUtilities
             {
                 if (ev.Player.IsTransmitting)
                 {
-                    // Сохраняем оригинальное имя игрока, если оно еще не сохранено
-                    if (!originalNames.ContainsKey(ev.Player.UserId))
+                    if (!originalNames.ContainsKey(ev.Player.Id))
                     {
-                        originalNames[ev.Player.UserId] = ev.Player.Nickname;
+                        originalNames[ev.Player.Id] = ev.Player.CustomName;
                     }
 
-                    // Устанавливаем кастомное имя
                     ev.Player.CustomName = _config.RadioCustomName;
                 }
                 else
                 {
-                    // Восстанавливаем оригинальное имя, если оно было сохранено
-                    if (originalNames.TryGetValue(ev.Player.UserId, out string originalName))
+                    if (originalNames.TryGetValue(ev.Player.Id, out string originalName))
                     {
-                        ev.Player.CustomName = originalName; // Восстанавливаем оригинальное имя
-                        originalNames.Remove(ev.Player.UserId); // Удаляем из словаря
+                        ev.Player.CustomName = originalName;
+                        originalNames.Remove(ev.Player.Id);
                     }
                 }
             }

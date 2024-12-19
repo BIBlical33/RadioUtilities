@@ -8,15 +8,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="ExMod.Exiled" Version="8.14.1" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Reference Include="Exiled.API">
-      <HintPath>..\..\..\..\..\..\Exiled Bağımlıları\global\dependencies\Exiled.API.dll</HintPath>
+      <HintPath>$(USERPROFILE)\.nuget\packages\exmod.exiled\8.14.1\lib\net48\Exiled.API.dll</HintPath>
     </Reference>
     <Reference Include="Exiled.Events">
-      <HintPath>..\..\..\..\..\..\Exiled Bağımlıları\Plugins\Exiled.Events.dll</HintPath>
+      <HintPath>$(USERPROFILE)\.nuget\packages\exmod.exiled\8.14.1\lib\net48\Exiled.Events.dll</HintPath>
     </Reference>
   </ItemGroup>
 
