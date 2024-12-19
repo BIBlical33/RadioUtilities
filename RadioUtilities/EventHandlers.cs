@@ -28,16 +28,16 @@ namespace RadioUtilities
                 {
                     if (!originalNames.ContainsKey(ev.Player.Id))
                     {
-                        originalNames[ev.Player.Id] = ev.Player.DisplayNickname;
+                        originalNames[ev.Player.Id] = ev.Player.CustomName;
                     }
 
-                    ev.Player.DisplayNickname = _config.RadioCustomName;
+                    ev.Player.CustomName = _config.RadioCustomName;
                 }
                 else
                 {
                     if (originalNames.TryGetValue(ev.Player.Id, out string originalName))
                     {
-                        ev.Player.DisplayNickname = originalName;
+                        ev.Player.CustomName = originalName;
                         originalNames.Remove(ev.Player.Id);
                     }
                 }
