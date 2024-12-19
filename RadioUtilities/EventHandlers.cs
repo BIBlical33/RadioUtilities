@@ -1,4 +1,5 @@
 ﻿using Exiled.Events.EventArgs.Player;
+
 using System.Collections.Generic;
 
 namespace RadioUtilities
@@ -27,20 +28,25 @@ namespace RadioUtilities
                 {
                     if (!originalNames.ContainsKey(ev.Player.Id))
                     {
-                        originalNames[ev.Player.Id] = ev.Player.CustomName;
+                        originalNames[ev.Player.Id] = ev.Player.DisplayNickname;
                     }
 
-                    ev.Player.CustomName = _config.RadioCustomName;
+                    ev.Player.DisplayNickname = _config.RadioCustomName;
                 }
                 else
                 {
                     if (originalNames.TryGetValue(ev.Player.Id, out string originalName))
                     {
-                        ev.Player.CustomName = originalName;
+                        ev.Player.DisplayNickname = originalName;
                         originalNames.Remove(ev.Player.Id);
                     }
                 }
             }
+        }
+
+        public void OnRoundStarted()
+        {
+            originalNames.Clear();
         }
     }
 }

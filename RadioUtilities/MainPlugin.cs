@@ -1,7 +1,5 @@
 ﻿using Exiled.API.Features;
-using Exiled.API.Interfaces;
-using System;
-using System.ComponentModel;
+
 using Player = Exiled.Events.Handlers.Player;
 
 namespace RadioUtilities
@@ -17,23 +15,25 @@ namespace RadioUtilities
         public static MainPlugin Instance;
 
         private EventHandlers _handlers { get; set; }
+        
         public override void OnEnabled()
         {
             Instance = this;
             _handlers = new EventHandlers(Config);
 
-
-
             Player.UsingRadioBattery += _handlers.OnUsingRadioBattery;
             Player.Transmitting += _handlers.OnTransmitting;
-
-
+            
+            Exiled.Events.Handlers.Server.RoundStarted += _handlers.OnRoundStarted;
+            
             base.OnEnabled();
         }
         public override void OnDisabled()
         {
             Player.UsingRadioBattery -= _handlers.OnUsingRadioBattery;
             Player.Transmitting -= _handlers.OnTransmitting;
+            
+            Exiled.Events.Handlers.Server.RoundStarted -= _handlers.OnRoundStarted;
 
             _handlers = null;
 
