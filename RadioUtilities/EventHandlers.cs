@@ -1,4 +1,5 @@
 ﻿using Exiled.Events.EventArgs.Player;
+using Exiled.Events.EventArgs.Player;
 
 using System.Collections.Generic;
 
@@ -42,6 +43,10 @@ namespace RadioUtilities
                     }
                 }
             }
+        }
+
+        public void OnChangingRole(ChangingRoleEventArgs ev) {
+            originalNames.Remove(ev.Player.Id);
         }
 
         public void OnRoundStarted()

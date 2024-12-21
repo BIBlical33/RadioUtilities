@@ -1,5 +1,4 @@
 ﻿using Exiled.API.Features;
-
 using Player = Exiled.Events.Handlers.Player;
 
 namespace RadioUtilities
@@ -23,7 +22,8 @@ namespace RadioUtilities
 
             Player.UsingRadioBattery += _handlers.OnUsingRadioBattery;
             Player.Transmitting += _handlers.OnTransmitting;
-            
+            Player.ChangingRole += _handlers.OnChangingRole;
+
             Exiled.Events.Handlers.Server.RoundStarted += _handlers.OnRoundStarted;
             
             base.OnEnabled();
@@ -32,8 +32,9 @@ namespace RadioUtilities
         {
             Player.UsingRadioBattery -= _handlers.OnUsingRadioBattery;
             Player.Transmitting -= _handlers.OnTransmitting;
-            
+
             Exiled.Events.Handlers.Server.RoundStarted -= _handlers.OnRoundStarted;
+            Player.ChangingRole -= _handlers.OnChangingRole;
 
             _handlers = null;
 
